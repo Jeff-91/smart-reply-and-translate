@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (!content.isEmpty()){
-//                    if (content.charAt(0) == ' ') {
+                    if (content.charAt(0) == ' ') {
                         Msg msg = new Msg(content, Msg.TYPE_SENT);
                         msgList.add(msg);
                         sendRequestWithOkHttp(content);
@@ -91,7 +91,15 @@ public class MainActivity extends AppCompatActivity {
                         adapter.notifyItemInserted(msgList.size() - 1); // 当有新消息时，刷新ListView中的显示
                         msgRecyclerView.scrollToPosition(msgList.size() - 1); // 将ListView定位到最后一行
                         inputText.setText(""); // 清空输入框中的内容
-//                    }
+                    } else {
+                        Msg msg = new Msg(content, Msg.TYPE_SENT);
+                        msgList.add(msg);
+                        sendRequestWithOkHttp1(content);
+                        Log.d("something", "==================00000=========");
+                        adapter.notifyItemInserted(msgList.size() - 1); // 当有新消息时，刷新ListView中的显示
+                        msgRecyclerView.scrollToPosition(msgList.size() - 1); // 将ListView定位到最后一行
+                        inputText.setText(""); // 清空输入框中的内容
+                    }
                 }
 //                int k = content.charAt(0);
 //                if (k == ' ' && !content.isEmpty()){
